@@ -1,17 +1,17 @@
 //importation of the dotenv package
-// the override is set to ture to Override any environment variables that have already been set on your machine with values from .env file.
+// the override is set to Override any environment variables that have already been set on your machine with values from .env file.
 require("dotenv").config({ override: true });
 
-// importation of express framewaork 
+//importation of express framewaork 
 const express = require("express");
 
-//importation of the connection instance 
+//importation of the connection instance from the connection folder
 const { connection } = require("../connection/connection");
 
-// setting of port number
+//setting of port number
 const Port = process.env.Port || 6000;
 
-//Creation of an Express application.  
+//Creation of an express application.  
 const app = express();
 
 //testing of connection
@@ -31,7 +31,8 @@ const connectionTester = async () => {
     }
 }
 
+// invoking the connectionTester func here 
 connectionTester()
 
-// app listening on the port number 
+//app listening on the port number 
 app.listen(Port, () => console.log(`app running on port : ${Port}`) )

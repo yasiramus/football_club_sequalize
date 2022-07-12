@@ -1,10 +1,10 @@
-// imporation of the datatypes from sequalize orm 
+//imporation of the datatypes from sequalize orm 
 const { DataTypes } = require("sequelize");
 
-//importation of the connection instance 
+//importation of the connection instance from the connection folder
 const { connection } = require("../connection/connection");
 
-// Define a new model for the player, representing a table in the DB.
+//Defining a new model for the player, which represent a table in the database.
 module.exports.player = connection.define("Player",
 
     // Model attributes are defined here
