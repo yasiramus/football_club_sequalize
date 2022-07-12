@@ -4,12 +4,14 @@ const { DataTypes } = require("sequelize");
 //importation of the connection instance 
 const { connection } = require("../connection/connection");
 
-// defining a model for the player 
+// Define a new model for the player, representing a table in the DB.
 module.exports.player = connection.define("Player",
 
     // Model attributes are defined here
+    // the attribute is An object, where each attribute is a column of the table.
     {
 
+        // that is the first name is a column 
         firstName: {
             
             type: DataTypes.STRING,
