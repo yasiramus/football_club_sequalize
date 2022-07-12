@@ -16,7 +16,9 @@ module.exports.connection = new Sequelize(
         host:'127.0.0.1',
 
         // the dialect signify the type of database you are using 
-        dialect:"mysql" 
+        dialect: "mysql",
+        
+        logging:false //disabling the default logger
     
     }
 
