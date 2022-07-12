@@ -56,7 +56,7 @@ module.exports.player = connection.define("Player",
     // model options
     {
 
-        connection,
+        connection, // passing the connection instance here
 
         // modelName: "Player"
         
