@@ -51,7 +51,7 @@ module.exports.team = connection.define("Team",
 
         numberOfEmployees: {
             
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             
             allowNull: false
 

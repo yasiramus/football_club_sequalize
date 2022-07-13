@@ -7,6 +7,8 @@ const express = require("express");
 
 //importation of the connection instance from the connection folder
 const { connection } = require("../connection/connection");
+const { player } = require("../models/player");
+const { team } = require("../models/team");
 
 //setting of port number
 const Port = process.env.Port || 6000;
@@ -33,6 +35,24 @@ const connectionTester = async () => {
 
 // invoking the connectionTester func here 
 connectionTester()
+
+const synchronize = async () => {
+
+    try {
+        
+        // Sync all defined models to the DB.
+        await connection.sync()
+
+        console.log("model synchronize successfully");
+
+    } catch (error) {
+        
+        console.log("unable synchronize to db columns",error);
+
+    }
+}
+
+synchronize();
 
 //app listening on the port number 
 app.listen(Port, () => console.log(`app running on port : ${Port}`) )
