@@ -5,7 +5,7 @@ const { DataTypes } = require("sequelize");
 const { connection } = require("../connection/connection");
 
 //Defining a new model for the player, which represent a table in the database.
-module.exports.player = connection.define("Player",
+module.exports.team = connection.define("Team",
 
     // Model attributes are defined here
     // the attribute is An object, where each attribute is a column of the table.
@@ -20,56 +20,44 @@ module.exports.player = connection.define("Player",
             autoIncrement: true
             
         },
-
+        
         // that is the first name is a column 
-        firstName: {
+        teamName: {
             
             type: DataTypes.STRING,
             
+            // setting the allowNull to false means the field should not be left vacant
             allowNull: false
 
         },
 
-        lastName: {
+        dateEstablished: {
+            
+            // A date only column
+            type: DataTypes.DATEONLY,
+            
+            allowNull: false
+
+        },
+
+        nickname: {
             
             type: DataTypes.STRING,
             
-            allowNull: false
-
+            // when allow null isnt set it takes the default value which is true
+            //  means the field can be left vacant
+            
         },
 
-        age: {
+        numberOfEmployees: {
             
-            type: DataTypes.INTEGER,
-            
-            allowNull: false
-
-        },
-
-        height: {
-            
-            type: DataTypes.STRING,
+            type: DataTypes.NUMBER,
             
             allowNull: false
-
-        },
-
-        position: {
-            
-            type: DataTypes.ENUM,
-            
-            values: ["defender", "midffilder", "striker"]
 
         }
-    },
 
-    // model options
-    // {
 
-    //     connection, // passing the connection instance here
-
-    //     // modelName: "Player"
-        
-    // }
+    }
 
 );
