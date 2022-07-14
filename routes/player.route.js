@@ -61,7 +61,9 @@ router.put("/api/player/:playerId", async (req, res) => {
     } catch (error) {
         
         console.log("something went wrong with updating of player informations : ", error)
+
     }
+    
 })
 
 // exporation of router app

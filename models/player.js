@@ -61,6 +61,15 @@ module.exports.player = connection.define("Player",
             values: ["defender", "midffilder", "striker"]
 
         }
+    }, 
+
+    {
+        // disabling the createdAt timestamp
+        createdAt: false,
+        
+        // I want updatedAt to actually be called updatePlayerTimestamp
+        updatedAt: 'updatePlayerTimestamp'
+        
     }
 
 );

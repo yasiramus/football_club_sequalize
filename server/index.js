@@ -46,7 +46,9 @@ connectionTester();
         try {
         
             // Sync all defined models to the DB.
-            await connection.sync()
+            // the alter:true checks what is the current state of the table in the database (which columns it has, what are their data types, etc), 
+            // and then performs the necessary changes in the table to make it match the model.
+            await connection.sync({ alter: true })
 
             console.log("model synchronize successfully");
 
@@ -61,7 +63,7 @@ connectionTester();
 )()
 
 // setting of middlewares 
-app.use(express.urlencoded( {extended:true} ) );
+app.use(express.urlencoded( {extended:true} ));
 
 app.use(express.json());
 
