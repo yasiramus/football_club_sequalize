@@ -10,6 +10,9 @@ const { connection } = require("../connection/connection");
 const { player } = require("../models/player");
 const { team } = require("../models/team");
 
+// imporation of router from the route folder
+const { router } = require("../routes/player.route");
+
 //setting of port number
 const Port = process.env.Port || 6000;
 
@@ -34,25 +37,35 @@ const connectionTester = async () => {
 }
 
 // invoking the connectionTester func here 
-connectionTester()
+connectionTester();
 
-const synchronize = async () => {
+// implemting the iife fuctions 
+(
+    async () => {
 
-    try {
+        try {
         
-        // Sync all defined models to the DB.
-        await connection.sync()
+            // Sync all defined models to the DB.
+            await connection.sync()
 
-        console.log("model synchronize successfully");
+            console.log("model synchronize successfully");
 
-    } catch (error) {
+        } catch (error) {
         
-        console.log("unable synchronize to db columns",error);
+            console.log("unable synchronize to db columns", error);
+
+        }
 
     }
-}
+    
+)()
 
-synchronize();
+// setting of middlewares 
+app.use(express.urlencoded( {extended:true} ) );
+
+app.use(express.json());
+
+app.use(router);
 
 //app listening on the port number 
 app.listen(Port, () => console.log(`app running on port : ${Port}`) )

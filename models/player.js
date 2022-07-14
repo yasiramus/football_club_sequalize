@@ -61,15 +61,6 @@ module.exports.player = connection.define("Player",
             values: ["defender", "midffilder", "striker"]
 
         }
-    },
-
-    // model options
-    // {
-
-    //     connection, // passing the connection instance here
-
-    //     // modelName: "Player"
-        
-    // }
+    }
 
 );
