@@ -18,8 +18,10 @@ module.exports.connection = new Sequelize(
         // the dialect signify the type of database you are using 
         dialect: "mysql",
         
-        logging:false //disabling the default logger
+        // logging:(msg) => console.log(msg) 
     
+        logging: false //disabling the default logger
+        
     }
 
 );

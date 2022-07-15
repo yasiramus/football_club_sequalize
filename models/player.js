@@ -15,9 +15,9 @@ module.exports.player = connection.define("Player",
 
             type: DataTypes.INTEGER,
 
-            primaryKey: true,
+            primaryKey:true,
             
-            autoIncrement: true
+            autoIncrement:true
             
         },
 
@@ -58,7 +58,7 @@ module.exports.player = connection.define("Player",
             
             type: DataTypes.ENUM,
             
-            values: ["defender", "midffilder", "striker"]
+            values: ["defender", "milddefender", "striker"]
 
         }
     }, 
