@@ -32,6 +32,23 @@ router.post("/api/player", async (req, res) => {
 
 });
 
+// fetching all players info
+router.get("/api/player", async (req, res) => {
+
+    try {
+        
+        const fetchAallPlayersInfo = await player.findAll();
+
+        res.status(201).json(fetchAallPlayersInfo)
+
+    } catch (error) {
+       
+        console.log("unable to fetch all players info : ", error)
+
+    }
+
+});
+
 // updating of player info 
 router.put("/api/player/:playerId", async (req, res) => {
 
@@ -63,7 +80,7 @@ router.put("/api/player/:playerId", async (req, res) => {
         console.log("something went wrong with updating of player informations : ", error)
 
     }
-    
+
 })
 
 // exporation of router app
