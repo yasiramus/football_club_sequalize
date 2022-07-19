@@ -4,7 +4,7 @@ const { player } = require("../models/player");
 // importation of operators symbol 
 const { Op } = require("sequelize");
 
-// crud operations start from here 
+// crud operations handlers start from here 
 
 // posting of player data
 module.exports.sendPlayerData = async (req, res) => {
@@ -114,5 +114,25 @@ module.exports.playerInfoDeleted = async (req, res) => {
     }
 
 };
+
+// fetching a single player information using their primary key 
+module.exports.getSingleInfoByPk = async (req, res) => {
+
+    try {
+        
+        const { id } = req.params;
+
+        // Search for a single instance by its primary key. 
+        // This applies LIMIT 1, so the listener will always be called with a single instance.
+        const findByTheirPk = await player.findByPk(id)
+
+        res.status(201).json(findByTheirPk)
+
+    } catch (error) {
+        
+        console.log(error.message)
+
+    }
+}
 
 // crud operations ends here 
