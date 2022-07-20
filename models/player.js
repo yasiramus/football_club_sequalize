@@ -4,6 +4,9 @@ const { DataTypes } = require("sequelize");
 //importation of the connection instance from the connection folder
 const { connection } = require("../connection/connection");
 
+// importation of bcrypt for hashing of password
+const bcrypt = require("bcrypt");
+
 //Defining a new model for the player, which represent a table in the database.
 module.exports.player = connection.define("Player",
 
@@ -26,7 +29,20 @@ module.exports.player = connection.define("Player",
             
             type: DataTypes.STRING,
             
-            allowNull: false
+            allowNull: false,
+
+            // with the get method it value isnt save in the database the get act like fetch the data get manipulated when 
+            // fetching the data  
+            get() {
+                
+                // getting the value
+                // we use the getDataValue method to get the value of the column
+                const firstNameToLowerCase = this.getDataValue("firstName");
+
+                // Converts firtname to uppercase.
+                return firstNameToLowerCase ? firstNameToLowerCase.toUpperCase() : null;
+
+            }
 
         },
 
@@ -42,7 +58,30 @@ module.exports.player = connection.define("Player",
             
             type: DataTypes.INTEGER,
             
-            allowNull: false
+            allowNull: false,
+
+            set(value){
+
+               const numberToString = value.toString();
+
+               this.setDataValue("age", numberToString)
+            }
+
+        },
+
+        password: {
+
+            type:DataTypes.STRING,
+
+            allowNull:false,
+
+            set(hashedValue){
+
+                const hashPassword = bcrypt.hashSync(hashedValue, 12);
+
+                this.setDataValue("password", hashPassword)
+
+            }
 
         },
 

@@ -12,11 +12,11 @@ module.exports.sendPlayerData = async (req, res) => {
     try {
         
         // destruting of player fields
-        const { firstName, lastName, age, height, position } = req.body;
+        const { firstName, lastName, age, password, height, position } = req.body;
 
         // the create() method Builds a new model instance and calls save on it.
         // that what is responsible for saving the player data in the database
-        const addPlayerData = await player.create({ firstName, lastName, age, height, position })
+        const addPlayerData = await player.create({ firstName, lastName, age, password, height, position })
 
         // returns the just added data
         res.status(201).json(addPlayerData)
