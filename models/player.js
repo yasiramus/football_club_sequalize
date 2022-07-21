@@ -50,7 +50,37 @@ module.exports.player = connection.define("Player",
             
             type: DataTypes.STRING,
             
-            allowNull: false
+            allowNull: false,
+
+            validate: {
+
+                // the notnull validator allow us to customize our own allowNull error message
+                notNull: {
+
+                    msg: "please enter your last name"
+                    
+                }
+            }
+
+        },
+
+        fullName: {
+
+            // A virtual value is not stored in the DB.
+            type: DataTypes.VIRTUAL,
+
+            get() {
+
+                // concating the first and last name to form a full name using template string
+                return `${this.firstName} ${this.lastName}`
+                
+            },
+
+            set() {
+
+                throw new Error('Do not try to set the `fullName` value!');
+                
+            }
 
         },
 
@@ -61,8 +91,11 @@ module.exports.player = connection.define("Player",
             allowNull: false,
 
             set(value){
-
-               const numberToString = value.toString();
+                // converting age numbertoa string
+            //    const numberToString = value.toString();
+                
+                // added10 tothe age number 
+                const numberToString = value + 10;3
 
                this.setDataValue("age", numberToString)
             }
