@@ -78,7 +78,7 @@ module.exports.player = connection.define("Player",
 
             set() {
 
-                throw new Error('Do not try to set the `fullName` value!');
+                throw new Error('Do not try to set the `fullName` value! in the db');
                 
             }
 
@@ -95,7 +95,7 @@ module.exports.player = connection.define("Player",
             //    const numberToString = value.toString();
                 
                 // added10 tothe age number 
-                const numberToString = value + 10;3
+                const numberToString = value + 10;
 
                this.setDataValue("age", numberToString)
             }

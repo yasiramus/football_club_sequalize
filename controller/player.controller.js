@@ -3,6 +3,7 @@ const { player } = require("../models/player");
 
 // importation of operators symbol 
 const { Op } = require("sequelize");
+const { connection } = require("../connection/connection");
 
 // crud operations handlers start from here 
 
@@ -55,22 +56,29 @@ module.exports.playerInfoUpdate = async (req, res) => {
         const { playerId } = req.params;
         
         // destruting of player fields
-        const { firstName, lastName, age, height, position } = req.body;
+        // const { firstName, lastName, age, height, position } = req.body;
 
-        // Update multiple instances that match the where options.The promise returns an array with one or two elements.The first element is always the number of affected rows, while 
+        // Update multiple instances that match the where options.The promise returns an array with one or two elements.The first element is always the number of affected rows, while
         // the second element is the actual affected rows(only supported in postgres and mssql with options.returning true.)
-        const updatePlayerInfo = await player.update({ firstName, lastName, age, height, position }, {
+        // const updatePlayerInfo = await player.update({ firstName, lastName, age, height, position }, {
 
-            // Options to describe the scope of the search.
-            where: {
+        //     // Options to describe the scope of the search.
+        //     where: {
 
-                id: playerId
+        //         id: playerId
 
-            }
+        //     }
 
-        })
+        // })
 
-        res.status(200).json(updatePlayerInfo)
+        const { lastName } = req.body;
+
+        // const [results, metadata] = await connection.query(`UPDATE players SET age = ${age} WHERE id = ${playerId}`);
+
+        // res.status(200).json(updatePlayerInfo)
+        const [result, metas] = await connection.query(`UPDATE players SET lastName=${lastName} where id=${playerId}`)
+        res.status(201).json(result)
+
 
     } catch (error) {
         
